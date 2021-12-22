@@ -50,28 +50,30 @@ object HomeworkSpecification extends Properties("Homework"):
   }
 
   property("negation") = forAll { (rational: Rational) =>
-    ???
+    -rational == Rational(-rational.numer, rational.denom)
   }
 
   property("addition") = forAll { (left: Rational, right: Rational) =>
-    ???
+    abs((left + right).toDouble - (left.toDouble + right.toDouble)) <= 0.000000000001 //(Very small amount)
   }
 
   property("subtraction") = forAll { (left: Rational, right: Rational) =>
-    ???
+    abs((left - right).toDouble - (left.toDouble - right.toDouble)) <= 0.000000000001 //(Very small amount)
   }
 
   property("multiplication") = forAll { (left: Rational, right: Rational) =>
-    ???
+    abs((left * right).toDouble - (left.toDouble * right.toDouble)) <= 0.000000000001 //(Very small amount)
   }
 
   property("division") = forAll { (left: Rational, numer: Int, denom: Int) =>
     val right = Rational(if numer == 0 then 1 else numer, abs(denom) + 1)
-    ???
+    abs((left / right).toDouble - (left.toDouble / right.toDouble)) <= 0.000000000001 //(Very small amount)
   }
 
   property("division by zero") = forAll { (left: Rational, int: Int) =>
-    ???
+    throws(classOf[IllegalArgumentException]) {
+      left / Rational(0, int)
+    }
   }
 
 end HomeworkSpecification
