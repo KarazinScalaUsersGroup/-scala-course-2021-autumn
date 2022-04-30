@@ -131,9 +131,3 @@ object Homework:
 
 end Homework
 
-object Main {
-  def main(args: Array[String]) = {
-    for( a <- 1 to 100)
-      println(Homework.`Look-and-say Sequence`.lookAndSaySequenceElement(a))
-  }
-}
